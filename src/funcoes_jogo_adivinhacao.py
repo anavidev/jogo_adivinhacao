@@ -11,22 +11,22 @@ e = 3
 # funcao menu principal
 
 def menu_principal():
-    print("---------------------------------------------------")    
-    print("-----------JOGO DE ADIVINHAÇÃO DE NÚMEROS----------") 
-    print("---------------------------------------------------") 
+    print(f"""
+    ---------------------------------------------------
+    -----------JOGO DE ADIVINHAÇÃO DE NÚMEROS----------
+    ---------------------------------------------------""")    
     resposta_menu = input(("--Aperte 'J' para entrar no jogo ou 'X' para sair--\n")).upper()
 
     match resposta_menu:
         case 'J':
-            os.system('cls')  or None
-            print("Selecione o nível de dificuldade:")
-            print("'1' -> MUITO FÁCIL (Número ilimitado de tentativas) \n"
-                "'2' -> FÁCIL (",b,"tentativas) \n"
-                "'3' -> MÉDIO (",c,"tentativas) \n" 
-                "'4' -> DIFÍCIL (",d,"tentativas) \n"
-                "'5' -> MUITO DIFÍCIL (",e,"tentativas)"
-                )
-        
+            os.system('cls')
+            print(f"""
+            Selecione o nível de dificuldade:
+            1 -> MUITO FÁCIL (Número ilimitado de tentativas)
+            2 -> FÁCIL ({b} tentativas)
+            3 -> MÉDIA ({c} tentativas)
+            4 -> DIFÍCIL ({d} tentativas)
+            5 -> MUITO DIFÍCIL ({e} tentativas)""")
             resposta_dificuldade = int(input())
             match resposta_dificuldade:
                 case 1:
@@ -42,16 +42,17 @@ def menu_principal():
                 case _:
                     exit()
         case 'X':
-            os.system('cls')  or None
+            os.system('cls')
             exit()      
 
 # funcao chutes  
 
 def chutes_mf():
+    os.system('cls')
+    print("Dificuldade MUITO FÁCIL")
     numero_sorteado = randint(0,100)
     contador = 1
-    print("\nO computador sorteou um número.\nTente adivinhar qual número entre 0 a 100 o computador sorteou.\n")
-    print("Tentativa",contador,":")
+    print(f"\nO computador sorteou um número.\nTente adivinhar qual número entre 0 a 100 o computador sorteou.\nTentativa {contador}:")
     chute = int(input())
     while chute != numero_sorteado:
         if chute > numero_sorteado:
@@ -59,24 +60,33 @@ def chutes_mf():
         else:
             print("O número que o computador escolheu é MAIOR.")
         contador += 1   
-        print("\nTentativa",contador,": ")
+        print(f"\nTentativa {contador}: ")
         chute = int(input()) 
-    print("\nVocê acertou!\nO número de tentativas foi",contador)
-    print()
+    print(f"\nVocê acertou!\nO número de tentativas foi {contador}\n")
     resposta_menu = input(("---Aperte 'J' para jogar novamente ou 'X' para sair---\n")).upper()
     match resposta_menu:
         case 'J':
-            os.system('cls')  or None
+            os.system('cls')  
             menu_principal()
         case 'X':
-            os.system('cls')  or None
+            os.system('cls')  
             exit()            
 
 def chutes(x):
+    os.system('cls')
+    match x:
+        case 9:
+            print("Dificuldade FÁCIL")
+        case 7:
+            print("Dificuldade MÉDIA")
+        case 5:
+            print("Dificuldade DIFÍCIL")                
+        case 3:
+            print("Dificuldade MUITO DIFÍCIL")
     numero_sorteado = randint(0,100)
     contador = 1
     print("\nO computador sorteou um número.\nTente adivinhar qual número entre 0 a 100 o computador sorteou.\n")
-    print("Tentativa",contador,": \nVocê possui",x - contador,"tentativa(s) restantes.")
+    print(f"Você possui {x - contador} tentativa(s) restantes.\nTentativa {contador}:")
     chute = int(input())
     while chute != numero_sorteado and contador < x:
         if chute > numero_sorteado:
@@ -84,27 +94,24 @@ def chutes(x):
         else:
             print("O número que o computador escolheu é MAIOR.")
         contador += 1   
-        print("\nTentativa",contador,": \nVocê possui",x - contador,"tentativa(s) restantes.")
+        print(f"\nVocê possui {x - contador} tentativa(s) restantes.\nTentativa {contador}:")
         chute = int(input())
     if chute == numero_sorteado:
-        print("\nVocê acertou! \nO número de tentativas foi",contador)
-        print()         
+        print(f"\nVocê acertou!\nO número de tentativas foi {contador}\n")       
         resposta_menu = input(("---Aperte 'J' para jogar novamente ou 'X' para sair---\n")).upper()
         match resposta_menu:
             case 'J':
-                os.system('cls')  or None
+                os.system('cls')  
                 menu_principal()
             case 'X':
-                os.system('cls')  or None
+                os.system('cls')  
                 exit()
-    else:
-        print("\nVocê não conseguiu adivinhar. \nO número era",numero_sorteado)
-        print()
-        resposta_menu = input(("---Aperte 'J' para jogar novamente ou 'X' para sair---\n")).upper()
-        match resposta_menu:
-            case 'J':
-                os.system('cls')  or None
-                menu_principal()
-            case 'X':
-                os.system('cls')  or None
-                exit()               
+    print(f"\nVocê não conseguiu adivinhar. \nO número era {numero_sorteado}\n")
+    resposta_menu = input(("---Aperte 'J' para jogar novamente ou 'X' para sair---\n")).upper()
+    match resposta_menu:
+        case 'J':
+            os.system('cls')  
+            menu_principal()
+        case 'X':
+            os.system('cls')  
+            exit()               
