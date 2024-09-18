@@ -2,14 +2,12 @@ from random import randint
 import os 
 
 # atribuicao de variaveis
-
 b = 9
 c = 7
 d = 5
 e = 3
 
 # funcao menu principal
-
 def menu_principal():
     print(f"""
     ---------------------------------------------------
@@ -46,7 +44,6 @@ def menu_principal():
             exit()      
 
 # funcao chutes  
-
 def chutes_mf():
     os.system('cls')
     print("Dificuldade MUITO FÁCIL")
@@ -75,18 +72,20 @@ def chutes_mf():
 def chutes(x):
     os.system('cls')
     match x:
-        case 9:
+        case _ if x == b:
             print("Dificuldade FÁCIL")
-        case 7:
+        case _ if x == c:
             print("Dificuldade MÉDIA")
-        case 5:
+        case _ if x == d:
             print("Dificuldade DIFÍCIL")                
-        case 3:
+        case _ if x == e:
             print("Dificuldade MUITO DIFÍCIL")
+        case _:
+            print("Dificuldade inválida")
     numero_sorteado = randint(0,100)
     contador = 1
     print("\nO computador sorteou um número.\nTente adivinhar qual número entre 0 a 100 o computador sorteou.\n")
-    print(f"Você possui {x - contador} tentativa(s) restantes.\nTentativa {contador}:")
+    print(f"Tentativa {contador}:")
     chute = int(input())
     while chute != numero_sorteado and contador < x:
         if chute > numero_sorteado:
@@ -94,7 +93,7 @@ def chutes(x):
         else:
             print("O número que o computador escolheu é MAIOR.")
         contador += 1   
-        print(f"\nVocê possui {x - contador} tentativa(s) restantes.\nTentativa {contador}:")
+        print(f"\nVocê possui {x - contador} tentativa(s) restante(s).\nTentativa {contador}:")
         chute = int(input())
     if chute == numero_sorteado:
         print(f"\nVocê acertou!\nO número de tentativas foi {contador}\n")       
