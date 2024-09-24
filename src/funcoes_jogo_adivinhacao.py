@@ -52,10 +52,7 @@ def chutes_mf():
     print(f"\nO computador sorteou um número.\nTente adivinhar qual número entre 0 a 100 o computador sorteou.\nTentativa {contador}:")
     chute = int(input())
     while chute != numero_sorteado:
-        if chute > numero_sorteado:
-            print("O número que o computador escolheu é MENOR.")
-        else:
-            print("O número que o computador escolheu é MAIOR.")
+        print("O número que o computador escolheu é MENOR." if chute > numero_sorteado else "O número que o computador escolheu é MAIOR.")
         contador += 1   
         print(f"\nTentativa {contador}: ")
         chute = int(input()) 
@@ -88,10 +85,7 @@ def chutes(x):
     print(f"Tentativa {contador}:")
     chute = int(input())
     while chute != numero_sorteado and contador < x:
-        if chute > numero_sorteado:
-            print("O número que o computador escolheu é MENOR.")
-        else:
-            print("O número que o computador escolheu é MAIOR.")
+        print("O número que o computador escolheu é MENOR." if chute > numero_sorteado else "O número que o computador escolheu é MAIOR.")
         contador += 1   
         print(f"\nVocê possui {x - contador} tentativa(s) restante(s).\nTentativa {contador}:")
         chute = int(input())
